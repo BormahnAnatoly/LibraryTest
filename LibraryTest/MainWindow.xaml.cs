@@ -49,10 +49,8 @@ namespace LibraryTest
         private void LibraryList_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemChanged || e.ListChangedType == ListChangedType.ItemDeleted)
-        }
-            
-        {
-            
+            {
+            }
         }
 
         private void Button3_Click(object sender, RoutedEventArgs e)
