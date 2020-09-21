@@ -5,18 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryTest"
         mc:Ignorable="d"
-        Title="Новая книга" Height="450" Width="800">
+        Title="Новая книга" Height="350" Width="800">
     <Grid>
-        <Label Content="№ Инв." HorizontalAlignment="Left" Height="35" Margin="31,28,0,0" VerticalAlignment="Top" Width="77" FontSize="14"/>
-        <TextBox x:Name="textInv" HorizontalAlignment="Left" Height="35" Margin="172,32,0,0" TextWrapping="Wrap" Text="{Binding NumOfInvent}" VerticalAlignment="Top" Width="124"/>
-        <Label Content="Название" HorizontalAlignment="Left" Height="33" Margin="31,96,0,0" VerticalAlignment="Top" Width="77" FontSize="14"/>
-        <TextBox x:Name="textName" HorizontalAlignment="Left" Height="33" Margin="172,96,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="124"/>
-        <Label Content="Автор" HorizontalAlignment="Left" Height="31" Margin="31,169,0,0" VerticalAlignment="Top" Width="66" FontSize="14"/>
-        <TextBox x:Name="textAuthor" HorizontalAlignment="Left" Height="31" Margin="172,169,0,0" TextWrapping="Wrap" Text="{Binding Author}" VerticalAlignment="Top" Width="124"/>
-        <Label Content="Год издания" HorizontalAlignment="Left" Height="37" Margin="31,259,0,0" VerticalAlignment="Top" Width="124" FontSize="14"/>
-        <TextBox x:Name="textYearPublic" HorizontalAlignment="Left" Height="37" Margin="172,259,0,0" TextWrapping="Wrap" Text="{Binding YearPublic}" VerticalAlignment="Top" Width="124"/>
-        <Button x:Name="buttonOk" Content="Ок" HorizontalAlignment="Left" Height="66" Margin="482,96,0,0" VerticalAlignment="Top" Width="244" FontSize="16" FontWeight="Bold" Click="buttonOk_Click"/>
-        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="77" Margin="482,236,0,0" VerticalAlignment="Top" Width="244" FontSize="18" FontWeight="Bold" Click="buttonCancel_Click"/>
-        <Grid HorizontalAlignment="Left" Height="103" Margin="316,236,0,0" VerticalAlignment="Top" Width="129"/>
+        <Label Content="№ Инв." HorizontalAlignment="Left" Height="35" Margin="30,30,0,0" VerticalAlignment="Top" Width="75" FontSize="14"/>
+        <TextBox x:Name="textInv" HorizontalAlignment="Left" Height="35" Margin="170,30,0,0" TextWrapping="Wrap" Text="{Binding NumOfInvent}" VerticalAlignment="Top" Width="124"/>
+        <Label Content="Название" HorizontalAlignment="Left" Height="35" Margin="30,100,0,0" VerticalAlignment="Top" Width="75" FontSize="14"/>
+        <TextBox x:Name="textName" HorizontalAlignment="Left" Height="35" Margin="170,100,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="124"/>
+        <Label Content="Автор" HorizontalAlignment="Left" Height="35" Margin="30,170,0,0" VerticalAlignment="Top" Width="75" FontSize="14"/>
+        <TextBox x:Name="textAuthor" HorizontalAlignment="Left" Height="35" Margin="170,170,0,0" TextWrapping="Wrap" Text="{Binding Author}" VerticalAlignment="Top" Width="124"/>
+        <Label Content="Год издания" HorizontalAlignment="Left" Height="35" Margin="30,260,0,0" VerticalAlignment="Top" Width="125" FontSize="14"/>
+        <TextBox x:Name="textYearPublic" HorizontalAlignment="Left" Height="35" Margin="170,260,0,0" TextWrapping="Wrap" Text="{Binding YearPublic}" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="buttonOk" Content="Ок" HorizontalAlignment="Left" Height="70" Margin="480,48,0,0" VerticalAlignment="Top" Width="245" FontSize="16" FontWeight="Bold" Click="buttonOk_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="70" Margin="480,201,0,0" VerticalAlignment="Top" Width="245" FontSize="18" FontWeight="Bold" Click="buttonCancel_Click"/>
+        <Grid HorizontalAlignment="Left" Height="100" Margin="316,236,0,0" VerticalAlignment="Top" Width="130"/>
     </Grid>
 </Window>

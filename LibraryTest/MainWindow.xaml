@@ -23,7 +23,5 @@
         <Button x:Name="bEdit" FontSize="16" Content="Редактировать" HorizontalAlignment="Left" Height="60" Margin="47,140,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bEdit_Click"/>
         <Button x:Name="bDelite" FontSize="16" Content="Удалить" HorizontalAlignment="Left" Height="60" Margin="47,240,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bDelete_Click"/>
         <Button x:Name="bSave" FontSize="16" Content="Сохранить в файл" HorizontalAlignment="Left" Height="60" Margin="47,340,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bSave_Click"/>
-
-
     </Grid>
 </Window>

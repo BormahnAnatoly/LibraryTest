@@ -4,7 +4,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Windows;
 
-
 namespace LibraryTest
 {
     /// <summary>
@@ -86,7 +85,7 @@ namespace LibraryTest
                         }
                     }
                 }
-            }            
+            }
         }
 
         private void bDelete_Click(object sender, RoutedEventArgs e)
