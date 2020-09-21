@@ -3,28 +3,53 @@ using System.ComponentModel;
 
 namespace LibraryTest.Models
 {
-    class RegistryBook 
-
-
-    /* мож тут добавить public RegistryBook(uint numOfInvent, string title, string author, uint yearPublic) {
-      this.numOfInvent = numOfInvent;
-      this.title =  title;
-    this.author = author;
-    this.yearPublic = yearPublic;
-    }
-    и иинициализировать констукторы через this. потом подтянуть в геттеры и сеттеры */
+    public class RegistryBook : INotifyPropertyChanged
     {
+        public Guid Id { get; } = Guid.NewGuid();
+
         private uint numOfInvent; // колонка номер инвентаря
-        public uint NumOfInvent { get; set; }
+        public uint NumOfInvent
+        {
+            get { return numOfInvent; }
+            set
+            {
+                numOfInvent = value;
+                OnPropertyChanged(nameof(NumOfInvent));
+            }
+        }
 
         private string title; // колонка название
-        public string Title { get; set; }
+        public string Title
+        {
+            get { return title; }
+            set
+            {
+                title = value;
+                OnPropertyChanged(nameof(Title));
+            }
+        }
 
         private string author; // колонка автор
-        public string Author { get; set; }
+        public string Author
+        {
+            get { return author; }
+            set
+            {
+                author = value;
+                OnPropertyChanged(nameof(Author));
+            }
+        }
 
         private uint yearPublic; // колонка год издания
-        public uint YearPublic { get; set; }
+        public uint YearPublic
+        {
+            get { return yearPublic; }
+            set
+            {
+                yearPublic = value;
+                OnPropertyChanged(nameof(YearPublic));
+            }
+        }
 
         public DateTime CreationDateYear { get; set; } = DateTime.Now; // дата поступления
 

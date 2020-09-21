@@ -1,7 +1,7 @@
 ﻿using LibraryTest.Models;
 using LibraryTest.Services;
 using System;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Windows;
 
 
@@ -13,76 +13,110 @@ namespace LibraryTest
     public partial class MainWindow : Window
     {
         private readonly string PATH = $"{Environment.CurrentDirectory}\\libraryList.json"; // путь директории по умолчанию где .exe
-        private BindingList<RegistryBook> libraryList;
+        private readonly ObservableCollection<RegistryBook> libraryList;
         private FileIOService fileIOService;
 
-        
+
         public MainWindow()
         {
             InitializeComponent();
-        }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
             fileIOService = new FileIOService(PATH);
-            libraryList = new BindingList<RegistryBook>()
-            {
-                new RegistryBook(){Title="test"},
-                new RegistryBook(){Title="asd"},
-                new RegistryBook(){Title="Карманный справочник 8.0", Author = "Джозеф Албахари, Бен Албахари", YearPublic = 2020}
-            };
-
             try
             {
                 libraryList = fileIOService.LoadData();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-         //       this.Close();
             }
-            
+
+            if (libraryList == null)
+            {
+                libraryList = new ObservableCollection<RegistryBook>();
+            }
 
             dtGridList.ItemsSource = libraryList;
-            libraryList.ListChanged += LibraryList_ListChanged;
-        }
-
-        private void LibraryList_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemChanged || e.ListChangedType == ListChangedType.ItemDeleted)
-            {
-                try
-                {
-                    fileIOService.SaveData(sender);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    //       this.Close();
-                }
-            }
         }
 
 
         private void bAdd_Click(object sender, RoutedEventArgs e)
         {
-            WindowAdd windowAdd = new WindowAdd();
-            windowAdd.Show();
+            WindowAdd windowAdd = new WindowAdd
+            {
+                DataContext = new RegistryBook()
+            };
+            var showDialog = windowAdd.ShowDialog();
+            if (showDialog != null && showDialog.Value)
+            {
+                var result = windowAdd.DataContext;
+                libraryList.Add((RegistryBook)result);
+            }
         }
 
         private void bEdit_Click(object sender, RoutedEventArgs e)
         {
-            WindowEdit windowEdit = new WindowEdit();
-            windowEdit.Show();
+            if (dtGridList.SelectedItem == null)
+            {
+                MessageBox.Show("Требуется выбрать строку для редактирования", "Ошибка при редактировании",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                WindowEdit windowEdit = new WindowEdit();
+                var book = (RegistryBook)dtGridList.SelectedItem;
+                windowEdit.DataContext = new RegistryBook
+                {
+                    Title = book.Title,
+                    Author = book.Author,
+                    YearPublic = book.YearPublic,
+                    NumOfInvent = book.NumOfInvent
+                };
+                var result = windowEdit.DataContext as RegistryBook;
+                if (windowEdit.ShowDialog() ?? false)
+                {
+                    for (int i = 0; i < libraryList.Count; i++)
+                    {
+                        if (libraryList[i].Id == book.Id)
+                        {
+                            libraryList[i].Title = result.Title;
+                            libraryList[i].Author = result.Author;
+                            libraryList[i].YearPublic = result.YearPublic;
+                            libraryList[i].NumOfInvent = result.NumOfInvent;
+                        }
+                    }
+                }
+            }            
         }
 
-        private void bDelite_Click(object sender, RoutedEventArgs e)
+        private void bDelete_Click(object sender, RoutedEventArgs e)
         {
-
+            if (dtGridList.SelectedItem == null)
+            {
+                MessageBox.Show("Требуется выбрать строку для удаления", "Ошибка при удалении",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                libraryList.Remove(dtGridList.SelectedItem as RegistryBook);
+            }
         }
 
         private void bSave_Click(object sender, RoutedEventArgs e)
         {
+            fileIOService = new FileIOService(PATH);
+            try
+            {
+                fileIOService.SaveData(libraryList);
+                MessageBox.Show("Сохранено в файл", "Сохранение данных",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                //       this.Close();
 
+            }
         }
     }
 }

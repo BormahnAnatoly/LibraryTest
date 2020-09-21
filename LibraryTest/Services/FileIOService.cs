@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -16,21 +17,21 @@ namespace LibraryTest.Services
 
         public FileIOService(string path)
         {
-            PATH = path;
+            this.PATH = path;
         }
 
-        public BindingList<RegistryBook> LoadData()
+        public ObservableCollection<RegistryBook> LoadData()
         {
             var fileExists = File.Exists(PATH);
             if (!fileExists)
             {
                 File.CreateText(PATH).Dispose();
-                return new BindingList<RegistryBook>();
+                return new ObservableCollection<RegistryBook>();
             }
             using(var reader = File.OpenText(PATH))
             {
                 var fileText = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<BindingList<RegistryBook>>(fileText);
+                return JsonConvert.DeserializeObject<ObservableCollection<RegistryBook>>(fileText);
             }
         }
 

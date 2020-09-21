@@ -23,5 +23,17 @@ namespace LibraryTest
         {
             InitializeComponent();
         }
+
+        private void buttonOk_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
+        }
+
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }

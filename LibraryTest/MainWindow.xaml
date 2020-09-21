@@ -3,27 +3,25 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:LibraryTest"
         mc:Ignorable="d"
-        Title="Реестр книг" Height="500" Width="800" Loaded="Window_Loaded">
+        Title="Реестр книг" Height="500" Width="800">
     <Grid RenderTransformOrigin="0.541,0.689">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="271*"/>
             <ColumnDefinition Width="125*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dtGridList" FontSize="14" HorizontalAlignment="Left" Height="447" Margin="10,12,0,0" VerticalAlignment="Top" Width="559" AutoGenerateColumns="False" Grid.ColumnSpan="2" >
+        <DataGrid x:Name="dtGridList" FontSize="14" HorizontalAlignment="Left" Height="447" Margin="10,12,0,0" SelectionMode="Single" VerticalAlignment="Top" Width="559" AutoGenerateColumns="False" Grid.ColumnSpan="2" CanUserDeleteRows="False" >
             <DataGrid.Columns>
-                
-                <DataGridTextColumn Binding="{Binding Path = numOfInvent}" IsReadOnly="True" Header="Инв.№" Width="54"/>
-                <DataGridTextColumn Binding="{Binding Path = Title}" IsReadOnly="True" Header="Название" Width="130"/>
-                <DataGridTextColumn Binding="{Binding Path = Author}" IsReadOnly="True" Header="Автор(ы)" Width="150"/>
-                <DataGridTextColumn Binding="{Binding Path = YearPublic}" IsReadOnly="False" Header="Год издания" Width="88"/>
-                <DataGridTextColumn Binding="{Binding Path = CreationDateYear}" IsReadOnly="True" Header="Дата поступления" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=NumOfInvent}" IsReadOnly="True" Header="Инв.№" Width="54"/>
+                <DataGridTextColumn Binding="{Binding Path=Title}" IsReadOnly="True" Header="Название" Width="130"/>
+                <DataGridTextColumn Binding="{Binding Path=Author}" IsReadOnly="True" Header="Автор(ы)" Width="150"/>
+                <DataGridTextColumn Binding="{Binding Path=YearPublic}" IsReadOnly="True" Header="Год издания" Width="88"/>
+                <DataGridTextColumn Binding="{Binding Path=CreationDateYear}" IsReadOnly="True" Header="Дата поступления" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="bAdd" FontSize="16" Content="Добавить" HorizontalAlignment="Left" Height="60" Margin="47,40,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bAdd_Click"/>
         <Button x:Name="bEdit" FontSize="16" Content="Редактировать" HorizontalAlignment="Left" Height="60" Margin="47,140,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bEdit_Click"/>
-        <Button x:Name="bDelite" FontSize="16" Content="Удалить" HorizontalAlignment="Left" Height="60" Margin="47,240,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bDelite_Click"/>
+        <Button x:Name="bDelite" FontSize="16" Content="Удалить" HorizontalAlignment="Left" Height="60" Margin="47,240,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bDelete_Click"/>
         <Button x:Name="bSave" FontSize="16" Content="Сохранить в файл" HorizontalAlignment="Left" Height="60" Margin="47,340,0,0" VerticalAlignment="Top" Width="190" Grid.Column="1" Click="bSave_Click"/>
 
 

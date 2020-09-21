@@ -21,7 +21,6 @@ namespace LibraryTest
     /// </summary>
     public partial class WindowAdd : Window
     {
-        private BindingList<RegistryBook> libraryList;
         public WindowAdd()
         {
             InitializeComponent();
@@ -29,16 +28,14 @@ namespace LibraryTest
 
         private void buttonOk_Click(object sender, RoutedEventArgs e)
         {
-            libraryList.Add(new RegistryBook() { Author = "John Doe" });
-            libraryList.Add(new RegistryBook() { Author = "Jane Lee" });
+            DialogResult = true;
+            Close();
+        }
 
-            //   textAuthor.ItemsSource = libraryList;
-            libraryList = new BindingList<RegistryBook>()
-            {
-                new RegistryBook(){Title="test"},
-                new RegistryBook(){Title="asd"},
-                new RegistryBook(){Title="Карманный справочник 8.0", Author = "Джозеф Албахари, Бен Албахари", YearPublic = 2020}
-            };
+        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
         }
     }
 }

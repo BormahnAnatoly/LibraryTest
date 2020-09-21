@@ -8,18 +8,15 @@
         Title="Новая книга" Height="450" Width="800">
     <Grid>
         <Label Content="№ Инв." HorizontalAlignment="Left" Height="35" Margin="31,28,0,0" VerticalAlignment="Top" Width="77" FontSize="14"/>
-        <TextBox x:Name="textInv" HorizontalAlignment="Left" Height="35" Margin="172,32,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="124"/>
+        <TextBox x:Name="textInv" HorizontalAlignment="Left" Height="35" Margin="172,32,0,0" TextWrapping="Wrap" Text="{Binding NumOfInvent}" VerticalAlignment="Top" Width="124"/>
         <Label Content="Название" HorizontalAlignment="Left" Height="33" Margin="31,96,0,0" VerticalAlignment="Top" Width="77" FontSize="14"/>
-        <TextBox x:Name="textName" HorizontalAlignment="Left" Height="33" Margin="172,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="124"/>
+        <TextBox x:Name="textName" HorizontalAlignment="Left" Height="33" Margin="172,96,0,0" TextWrapping="Wrap" Text="{Binding Title}" VerticalAlignment="Top" Width="124"/>
         <Label Content="Автор" HorizontalAlignment="Left" Height="31" Margin="31,169,0,0" VerticalAlignment="Top" Width="66" FontSize="14"/>
-        <TextBox x:Name="textAuthor" HorizontalAlignment="Left" Height="31" Margin="172,169,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="124"/>
+        <TextBox x:Name="textAuthor" HorizontalAlignment="Left" Height="31" Margin="172,169,0,0" TextWrapping="Wrap" Text="{Binding Author}" VerticalAlignment="Top" Width="124"/>
         <Label Content="Год издания" HorizontalAlignment="Left" Height="37" Margin="31,259,0,0" VerticalAlignment="Top" Width="124" FontSize="14"/>
-        <TextBox x:Name="textYearPublic" HorizontalAlignment="Left" Height="37" Margin="172,259,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="124"/>
-        <Label Content="Дата поступления" HorizontalAlignment="Left" Height="33" Margin="31,337,0,0" VerticalAlignment="Top" Width="124" FontSize="14"/>
-        <TextBox x:Name="textCreationDateYear" HorizontalAlignment="Left" Height="33" Margin="172,337,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="124"/>
-        <Button x:Name="buttonOk" Content="Ок" HorizontalAlignment="Left" Height="66" Margin="482,96,0,0" VerticalAlignment="Top" Width="244" FontWeight="Bold" FontSize="16" Click="buttonOk_Click"/>
-        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="77" Margin="482,236,0,0" VerticalAlignment="Top" Width="244" FontSize="18" FontWeight="Bold"/>
+        <TextBox x:Name="textYearPublic" HorizontalAlignment="Left" Height="37" Margin="172,259,0,0" TextWrapping="Wrap" Text="{Binding YearPublic}" VerticalAlignment="Top" Width="124"/>
+        <Button x:Name="buttonOk" Content="Ок" HorizontalAlignment="Left" Height="66" Margin="482,96,0,0" VerticalAlignment="Top" Width="244" FontSize="16" FontWeight="Bold" Click="buttonOk_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="77" Margin="482,236,0,0" VerticalAlignment="Top" Width="244" FontSize="18" FontWeight="Bold" Click="buttonCancel_Click"/>
         <Grid HorizontalAlignment="Left" Height="103" Margin="316,236,0,0" VerticalAlignment="Top" Width="129"/>
-
     </Grid>
 </Window>
