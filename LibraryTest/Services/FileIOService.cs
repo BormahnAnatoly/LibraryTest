@@ -34,7 +34,7 @@ namespace LibraryTest.Services
             }
         }
 
-        public void SaveData(BindingList<RegistryBook> libraryList)
+        public void SaveData(object libraryList)
         {
             using(StreamWriter writer = File.CreateText(PATH))
             {

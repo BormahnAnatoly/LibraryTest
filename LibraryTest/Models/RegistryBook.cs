@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace LibraryTest.Models
 {
-    class RegistryBook : INotifyPropertyChanged
+    class RegistryBook 
 
 
     /* мож тут добавить public RegistryBook(uint numOfInvent, string title, string author, uint yearPublic) {
@@ -15,22 +15,15 @@ namespace LibraryTest.Models
     и иинициализировать констукторы через this. потом подтянуть в геттеры и сеттеры */
     {
         private uint numOfInvent; // колонка номер инвентаря
-
-        /* public uint NumOfInvent
-         {
-             get { return numOfInvent; }
-         } */
+        public uint NumOfInvent { get; set; }
 
         private string title; // колонка название
-
         public string Title { get; set; }
 
         private string author; // колонка автор
-
         public string Author { get; set; }
 
         private uint yearPublic; // колонка год издания
-
         public uint YearPublic { get; set; }
 
         public DateTime CreationDateYear { get; set; } = DateTime.Now; // дата поступления
