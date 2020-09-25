@@ -1,16 +1,19 @@
 ﻿using System;
-using System.ComponentModel;
+using LibraryTest.ViewModels;
 
 namespace LibraryTest.Models
 {
-    public class RegistryBook : INotifyPropertyChanged
+    public class RegistryBook : ModelBase
     {
         public Guid Id { get; } = Guid.NewGuid();
 
         private uint numOfInvent; // колонка номер инвентаря
         public uint NumOfInvent
         {
-            get { return numOfInvent; }
+            get
+            {
+                return numOfInvent;
+            }
             set
             {
                 numOfInvent = value;
@@ -21,7 +24,10 @@ namespace LibraryTest.Models
         private string title; // колонка название
         public string Title
         {
-            get { return title; }
+            get
+            {
+                return title;
+            }
             set
             {
                 title = value;
@@ -32,7 +38,10 @@ namespace LibraryTest.Models
         private string author; // колонка автор
         public string Author
         {
-            get { return author; }
+            get
+            {
+                return author;
+            }
             set
             {
                 author = value;
@@ -43,7 +52,10 @@ namespace LibraryTest.Models
         private uint yearPublic; // колонка год издания
         public uint YearPublic
         {
-            get { return yearPublic; }
+            get
+            {
+                return yearPublic;
+            }
             set
             {
                 yearPublic = value;
@@ -52,13 +64,6 @@ namespace LibraryTest.Models
         }
 
         public DateTime CreationDateYear { get; set; } = DateTime.Now; // дата поступления
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); //проверка на null             
-        }
 
     }
 }
