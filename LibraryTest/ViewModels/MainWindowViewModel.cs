@@ -21,7 +21,7 @@ namespace LibraryTest.ViewModels
             InitializeFile();
         }
 
-        protected void InitializeFile()
+        private void InitializeFile()
         {
             try
             {
