@@ -9,9 +9,19 @@ namespace LibraryTest.ViewModels
 {
     public class MainWindowViewModel : ModelBase
     {
-        private readonly FileIOService fileIOService = new FileIOService();        
-        
+        private readonly FileIOService fileIOService = new FileIOService();
+
         public MainWindowViewModel()
+        {
+            AddCommand = new Command(arg => AddCommandMethod(arg), () => CanAdd());
+            EditCommand = new Command(arg => EditCommandMethod(arg), () => CanEdit());
+            DeleteCommand = new Command(arg => DeleteCommandMethod(), () => CanDelete());
+            SaveCommand = new Command(arg => SaveCommandMethod(), () => CanSave());
+
+            InitializeFile();
+        }
+
+        protected void InitializeFile()
         {
             try
             {
@@ -21,29 +31,23 @@ namespace LibraryTest.ViewModels
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
             if (LibraryList == null)
             {
                 LibraryList = new ObservableCollection<RegistryBook>();
             }
-
-            AddCommand = new Command(arg => AddCommandMethod(), () => CanAdd());
-            EditCommand = new Command(arg => EditCommandMethod(), () => CanEdit());
-            DeleteCommand = new Command(arg => DeleteCommandMethod(), () => CanDelete());
-            SaveCommand = new Command(arg => SaveCommandMethod(), () => CanSave());
-
         }
 
         #region Properties 
 
         private ObservableCollection<RegistryBook> _libraryList;
 
-        public ObservableCollection<RegistryBook> LibraryList 
-        { 
-            get 
+        public ObservableCollection<RegistryBook> LibraryList
+        {
+            get
             {
                 return _libraryList;
-            } 
+            }
             set
             {
                 _libraryList = value;
@@ -53,9 +57,9 @@ namespace LibraryTest.ViewModels
 
         private RegistryBook _selectedBook;
 
-        public RegistryBook SelectedBook 
-        { 
-            get 
+        public RegistryBook SelectedBook
+        {
+            get
             {
                 return _selectedBook;
             }
@@ -64,7 +68,7 @@ namespace LibraryTest.ViewModels
                 _selectedBook = value;
                 EditCommand.RaiseCanExecuteChanged();
                 DeleteCommand.RaiseCanExecuteChanged();
-            } 
+            }
         }
 
         #endregion
@@ -78,18 +82,19 @@ namespace LibraryTest.ViewModels
             return true;
         }
 
-        private void AddCommandMethod()
+        private void AddCommandMethod(object arg)
         {
             WindowAddView windowAdd = new WindowAddView
             {
-                DataContext = new WindowAddEditViewModel()
+                DataContext = new WindowAddEditViewModel(),
+                Owner = arg as Window,
             };
-            
+
             var showDialog = windowAdd.ShowDialog();
             if (showDialog != null && showDialog.Value)
             {
                 var result = windowAdd.DataContext as WindowAddEditViewModel;
-                if (result != null )
+                if (result != null)
                 {
                     var book = new RegistryBook
                     {
@@ -111,18 +116,22 @@ namespace LibraryTest.ViewModels
             return SelectedBook != null;
         }
 
-        private void EditCommandMethod()
+        private void EditCommandMethod(object arg)
         {
             if (SelectedBook != null)
             {
-                WindowEditView windowEdit = new WindowEditView();
-                windowEdit.DataContext = new WindowAddEditViewModel
+                WindowEditView windowEdit = new WindowEditView
                 {
-                    Title = SelectedBook.Title,
-                    Author = SelectedBook.Author,
-                    YearPublic = SelectedBook.YearPublic,
-                    NumOfInvent = SelectedBook.NumOfInvent
+                    Owner = arg as Window,
+                    DataContext = new WindowAddEditViewModel
+                    {
+                        Title = SelectedBook.Title,
+                        Author = SelectedBook.Author,
+                        YearPublic = SelectedBook.YearPublic,
+                        NumOfInvent = SelectedBook.NumOfInvent
+                    }
                 };
+
                 var result = windowEdit.DataContext as WindowAddEditViewModel;
                 if (windowEdit.ShowDialog() ?? false)
                 {
@@ -155,8 +164,8 @@ namespace LibraryTest.ViewModels
         {
             if (SelectedBook != null)
             {
-                MessageBoxResult messageBoxResult = MessageBox.Show("Вы уверены, что хотите удалить эту книгу?", "Подтвердите безвозвратное удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
+                MessageBoxResult messageBoxResult = MessageBox.Show("Вы уверены, что хотите удалить эту книгу?",
+                    "Подтвердите безвозвратное удаление книги", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
                     LibraryList.Remove(SelectedBook);
@@ -165,7 +174,7 @@ namespace LibraryTest.ViewModels
 
         }
 
-       
+
         public Command SaveCommand { get; }
 
         private bool CanSave()
@@ -176,7 +185,7 @@ namespace LibraryTest.ViewModels
         private void SaveCommandMethod()
 
         {
-             try
+            try
             {
                 fileIOService.SaveData(LibraryList);
                 MessageBox.Show("Сохранено в файл", "Сохранение данных",
@@ -185,7 +194,6 @@ namespace LibraryTest.ViewModels
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
 

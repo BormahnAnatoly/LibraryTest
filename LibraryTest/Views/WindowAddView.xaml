@@ -5,24 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryTest"
         mc:Ignorable="d"
+        ShowInTaskbar="False"
         x:Name="addwindow"
-        Title="Новая книга" MinHeight="150" MinWidth="315" Height="150" Width="325">
-    <Grid HorizontalAlignment="Stretch" Height="160" VerticalAlignment="Top" Width="300">
-        <StackPanel Background="GreenYellow" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="90">
-            <Label Content="№ Инв." HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="90"/>
-            <Label Content="Название" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="90"/>
-            <Label Content="Автор" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="90"/>
-            <Label Content="Год издания" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="90"/>
-        </StackPanel>
-        <StackPanel Background="Red" Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="125" Margin="92,0,0,0">
-            <TextBox x:Name="textInv" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="{Binding NumOfInvent, Mode=TwoWay}" VerticalAlignment="Top" Width="124"/>
-            <TextBox x:Name="textName" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="{Binding Title, Mode=TwoWay}" VerticalAlignment="Top" Width="124"/>
-            <TextBox x:Name="textAuthor" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="{Binding Author, Mode=TwoWay}" VerticalAlignment="Top" Width="124"/>
-            <TextBox x:Name="textYearPublic" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="{Binding YearPublic, Mode=TwoWay}" VerticalAlignment="Top" Width="124"/>
-        </StackPanel>
-        <StackPanel Background="Aqua" Grid.Column="2" Orientation="Vertical" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="80" Margin="217,0,0,0">
-            <Button x:Name="buttonOk" Content="Ок" FontSize="14" FontWeight="Bold" Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=addwindow}" IsDefault="True"/>
-            <Button x:Name="buttonCancel" Content="Отмена" FontSize="14" FontWeight="Bold" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=addwindow}" IsCancel="True"/>
+        Title="Новая книга" MinHeight="150" MinWidth="315" Height="150" Width="315">
+    <Grid HorizontalAlignment="Stretch" Height="160" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Content="№ Инв." HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
+            <Label Grid.Row="1" Content="Название" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
+            <Label Grid.Row="2" Content="Автор" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
+            <Label Grid.Row="3" Content="Год издания" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top"/>
+        </Grid>
+        <Grid Grid.Column="1" HorizontalAlignment="Stretch" Height="100" VerticalAlignment="Top" Margin="10,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" x:Name="textInv" HorizontalAlignment="Stretch" Height="25" TextWrapping="Wrap" Text="{Binding NumOfInvent, Mode=TwoWay}" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="1" x:Name="textName" HorizontalAlignment="Stretch" Height="25" TextWrapping="Wrap" Text="{Binding Title, Mode=TwoWay}" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="2" x:Name="textAuthor" HorizontalAlignment="Stretch" Height="25" TextWrapping="Wrap" Text="{Binding Author, Mode=TwoWay}" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="3" x:Name="textYearPublic" HorizontalAlignment="Stretch" Height="25" TextWrapping="Wrap" Text="{Binding YearPublic, Mode=TwoWay}" VerticalAlignment="Top"/>
+        </Grid>
+        <StackPanel Grid.Column="2" Orientation="Vertical" Margin="15">
+            <Button x:Name="buttonOk" Content="Ок" FontSize="16" HorizontalAlignment="Left" Height="25" Margin="0,0,0,20" Width="74" Command="{Binding OkCommand}" CommandParameter="{Binding ElementName=addwindow}" IsDefault="True"/>
+            <Button x:Name="buttonCancel" Content="Отмена" FontSize="16" HorizontalAlignment="Left" Height="25" Margin="0,0,0,20" Width="74" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=addwindow}" IsCancel="True"/>
         </StackPanel>
     </Grid>
 </Window>

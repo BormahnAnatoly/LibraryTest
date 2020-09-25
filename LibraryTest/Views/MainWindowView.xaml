@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
+        x:Name="owner"
         Title="Реестр книг" MinHeight="500" MinWidth="765" Height="500" Width="765">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -20,18 +21,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1" Orientation="Vertical" Margin="20">
-            <Border Margin="0,10,27,10" Height="25">
-                <Button x:Name="bAdd" FontSize="16" Content="Добавить" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Grid.Column="1" Command="{Binding AddCommand}"/>
-            </Border>
-            <Border Margin="0,10,27,10" Height="25">
-                <Button x:Name="bEdit" FontSize="16" Content="Редактировать" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Command="{Binding EditCommand}"/>
-            </Border>
-            <Border Margin="0,10,27,10" Height="25">
-                <Button x:Name="bDelete" FontSize="16" Content="Удалить" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Grid.Column="1" Command="{Binding DeleteCommand}"/>
-            </Border>
-            <Border Margin="0,10,27,10" Height="25">
-                <Button x:Name="bSave" FontSize="16" Content="Сохранить в файл" HorizontalAlignment="Left" Height="25" VerticalAlignment="Top" Width="140" Command="{Binding SaveCommand}"/>
-            </Border>
+            <Button x:Name="bAdd" FontSize="16" Content="Добавить" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Grid.Column="1" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=owner}"/>
+            <Button x:Name="bEdit" FontSize="16" Content="Редактировать" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=owner}"/>
+            <Button x:Name="bDelete" FontSize="16" Content="Удалить" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Grid.Column="1" Command="{Binding DeleteCommand}"/>
+            <Button x:Name="bSave" FontSize="16" Content="Сохранить в файл" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Command="{Binding SaveCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
