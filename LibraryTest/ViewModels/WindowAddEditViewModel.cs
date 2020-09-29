@@ -5,7 +5,6 @@ namespace LibraryTest.ViewModels
 {
     public class WindowAddEditViewModel : ModelBase
     {
-
         public Command OkCommand { get; }
         public Command CancelCommand { get; }
 

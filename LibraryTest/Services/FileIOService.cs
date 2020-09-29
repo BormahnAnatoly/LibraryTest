@@ -8,16 +8,16 @@ namespace LibraryTest.Services
 {
     class FileIOService
     {
-        private readonly string PATH = $"{Environment.CurrentDirectory}\\LibraryList.json";
-
+        private readonly string PATH = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\LibraryBookApp";
+        private readonly string FILENAME = "LibraryList.json";
         public ObservableCollection<RegistryBook> LoadData()
         {
-            var fileExists = File.Exists(PATH);
+            var fileExists = File.Exists(Path.Combine(PATH, FILENAME));
             if (!fileExists)
             {
                 return new ObservableCollection<RegistryBook>();
             }
-            using(var reader = File.OpenText(PATH))
+            using (var reader = File.OpenText(Path.Combine(PATH, FILENAME)))
             {
                 var fileText = reader.ReadToEnd();
                 return JsonConvert.DeserializeObject<ObservableCollection<RegistryBook>>(fileText);
@@ -26,7 +26,12 @@ namespace LibraryTest.Services
 
         public void SaveData(object LibraryList)
         {
-            using(StreamWriter writer = File.CreateText(PATH))
+            if (!Directory.Exists(PATH))
+            {
+                Directory.CreateDirectory(PATH);
+            }
+
+            using (StreamWriter writer = File.CreateText(Path.Combine(PATH, FILENAME)))
             {
                 string output = JsonConvert.SerializeObject(LibraryList);
                 writer.Write(output);

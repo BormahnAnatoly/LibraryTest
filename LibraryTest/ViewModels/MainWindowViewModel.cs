@@ -174,7 +174,6 @@ namespace LibraryTest.ViewModels
 
         }
 
-
         public Command SaveCommand { get; }
 
         private bool CanSave()
@@ -182,18 +181,21 @@ namespace LibraryTest.ViewModels
             return true;
         }
 
-        private void SaveCommandMethod()
 
+        private void SaveCommandMethod()
         {
-            try
+            if (LibraryList != null)
             {
-                fileIOService.SaveData(LibraryList);
-                MessageBox.Show("Сохранено в файл", "Сохранение данных",
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    fileIOService.SaveData(LibraryList);
+                    MessageBox.Show("Сохранено в файл", "Сохранение данных",
+                        MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

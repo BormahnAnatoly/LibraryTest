@@ -11,7 +11,7 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Column="0" x:Name="dtGridList" FontSize="14" HorizontalAlignment="Stretch" Height="440" SelectionMode="Single" CanUserAddRows="False" AutoGenerateColumns="False" VerticalAlignment="Top" CanUserDeleteRows="False" ItemsSource="{Binding LibraryList}" SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
+        <DataGrid Grid.Column="0" x:Name="dtGridList"  FontSize="14" HorizontalAlignment="Stretch" Height="440" SelectionMode="Single" CanUserAddRows="False" AutoGenerateColumns="False" VerticalAlignment="Top" CanUserDeleteRows="False" ItemsSource="{Binding LibraryList}" SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Path=NumOfInvent, Mode=TwoWay}" IsReadOnly="True" Header="Инв.№" Width="54"/>
                 <DataGridTextColumn Binding="{Binding Path=Title, Mode=TwoWay}" IsReadOnly="True" Header="Название" Width="130"/>
@@ -24,7 +24,7 @@
             <Button x:Name="bAdd" FontSize="16" Content="Добавить" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Grid.Column="1" Command="{Binding AddCommand}" CommandParameter="{Binding ElementName=owner}"/>
             <Button x:Name="bEdit" FontSize="16" Content="Редактировать" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Command="{Binding EditCommand}" CommandParameter="{Binding ElementName=owner}"/>
             <Button x:Name="bDelete" FontSize="16" Content="Удалить" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Grid.Column="1" Command="{Binding DeleteCommand}"/>
-            <Button x:Name="bSave" FontSize="16" Content="Сохранить в файл" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140" Command="{Binding SaveCommand}"/>
+            <Button x:Name="bSave" FontSize="16" Content="Сохранить в файл" HorizontalAlignment="Left" Height="25" Margin="0,0,0,10" VerticalAlignment="Top" Width="140"  Command="{Binding SaveCommand}"/>
         </StackPanel>
     </Grid>
 </Window>
